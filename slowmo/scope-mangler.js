@@ -92,12 +92,8 @@ define(function(require, module, exports) {
         return;
       }
       if (node.parent.type == "MemberExpression" &&
-          ((node.parent.computed == false &&
-          node.parent.object !== node) ||
-        false//  (node.parent.parent && 
-       //   node.parent.parent.type == "CallExpression"))
-
-      )) {
+          node.parent.computed == false &&
+          node.parent.object !== node) {
         return;
       }
       node.update('(scope.get(' + JSON.stringify(node.name) + ', ' +
