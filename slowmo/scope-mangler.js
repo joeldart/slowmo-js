@@ -105,6 +105,7 @@ upup: node.parent.parent.parent &&node.parent.parent.parent.type
      
      node.update('(scope.get(' + JSON.stringify(node.name) + ', ' +
                   range(node) + '))');
+alert(node.parent.parent.body.source);
     }
   };
 });
