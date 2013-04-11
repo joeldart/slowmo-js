@@ -96,7 +96,7 @@ define(function(require, module, exports) {
           node.parent.object !== node) {
         return;
       }
-      if (node.parent.type == "MemberExpression") alert(JSON.stringify(node));
+      alert(JSON.stringify(node));
       node.update('(scope.get(' + JSON.stringify(node.name) + ', ' +
                   range(node) + '))');
     }
