@@ -96,11 +96,14 @@ define(function(require, module, exports) {
           node.parent.object !== node) {
         return;
       }
-      alert(JSON.stringify({
+      alert(node.name,JSON.stringify({
 up: node.parent.parent && node.parent.parent.type,
 upup: node.parent.parent.parent &&node.parent.parent.parent.type
 }  ));
-      node.update('(scope.get(' + JSON.stringify(node.name) + ', ' +
+
+
+     
+     node.update('(scope.get(' + JSON.stringify(node.name) + ', ' +
                   range(node) + '))');
     }
   };
