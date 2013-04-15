@@ -409,28 +409,31 @@ define("main", function(require) {
         AttrMangler(node);
         ScopeMangler(node);
         loopInserter(node);
-        if (node.type == "CallExpression" ||
-            node.type == "BinaryExpression" ||
-            node.type == "UnaryExpression") {
+
+
        if(node.type == "CallExpression"){
-alert(node.callee.source());
-//alert(node.arguments);
-alert(node.callee.source() +".apply(" +
-  (node.callee.parent.object ?
-     node.callee.parent.object.source() :"null"
-   ) +
-  ",["+ (node.arguments&&node.arguments.map(function(o){return o.source();}).join(','))+
-'])'
-);
-}
-   var codeSlice = code.slice(node.range[0], node.range[1]);
-          node.update("logResult(" + node.source() + ", " +
+         //call is function AND member call, so we have to persist context
+         //to do this in a reusable way, func.apply(context, arguments)
+         var newSource = node.callee.source() +".apply(" +
+           (node.callee.object ? node.callee.object.source() :"null") +
+           ",["+ (node.arguments && node.arguments.map(function(o){
+	     return o.source();
+	   }).join(',')) + '])';
+           node.update(newSource);
+        }
+
+
+
+       if (node.type == "CallExpression" ||
+           node.type == "BinaryExpression" ||
+           node.type == "UnaryExpression") {
+         var codeSlice = code.slice(node.range[0], node.range[1]);
+         node.update("logResult(" + node.source() + ", " +
                       JSON.stringify(codeSlice) + ", " +
                       JSON.stringify(node.range) + ", " +
                       JSON.stringify(node.type) + ")");
         }
       }).toString();
-alert(mangled);
     } catch (e) {
       if (e.index) {
         outputHighlight(code, [e.index, e.index+1]);
