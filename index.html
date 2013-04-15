@@ -412,7 +412,7 @@ define("main", function(require) {
         if (node.type == "CallExpression" ||
             node.type == "BinaryExpression" ||
             node.type == "UnaryExpression") {
-       if(node.type == "CallExpression")alert(node.callee);
+       if(node.type == "CallExpression")alert(JSON.stringify(node.callee));
    var codeSlice = code.slice(node.range[0], node.range[1]);
           node.update("logResult(" + node.source() + ", " +
                       JSON.stringify(codeSlice) + ", " +
