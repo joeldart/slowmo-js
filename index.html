@@ -414,9 +414,11 @@ define("main", function(require) {
             node.type == "UnaryExpression") {
        if(node.type == "CallExpression"){
 alert(node.callee.source());
-alert(node.arguments);
+//alert(node.arguments);
 alert(node.callee.source() +".apply(" +
-  node.callee.parent.object.source() +
+  (node.callee.parent.object ?
+     node.callee.parent.object.source() :"null"
+   ) +
   ",["+ (node.arguments&&node.arguments.map(function(o){return o.source();}).join(','))+
 '])'
 );
