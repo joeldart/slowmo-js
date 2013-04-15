@@ -417,8 +417,10 @@ alert(node.callee.source());
 alert(node.arguments);
 alert(node.callee.source() +".apply(" +
   node.callee.parent.object.source() +
-  ",["+ node.arguments.map(function(o){return o.source();}).join(',')+'])'
-});
+  ",["+ (node.arguments&&node.arguments.map(function(o){return o.source();}).join(','))+
+'])'
+);
+}
    var codeSlice = code.slice(node.range[0], node.range[1]);
           node.update("logResult(" + node.source() + ", " +
                       JSON.stringify(codeSlice) + ", " +
