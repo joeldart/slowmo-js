@@ -96,10 +96,10 @@ define(function(require, module, exports) {
           node.parent.object !== node) {
         return;
       }
-      alert(node.name,JSON.stringify({
-up: node.parent.parent && node.parent.parent.type,
-upup: node.parent.parent.parent &&node.parent.parent.parent.type
-}  ));
+//      alert(node.name,JSON.stringify({
+//up: node.parent.parent && node.parent.parent.type,
+//upup: node.parent.parent.parent &&node.parent.parent.parent.type
+//}  ));
 
 
      var ident = '(scope.get(' + JSON.stringify(node.name) + ', ' +
