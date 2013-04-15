@@ -419,6 +419,7 @@ define("main", function(require) {
                       JSON.stringify(node.type) + ")");
         }
       }).toString();
+alert(mangled);
     } catch (e) {
       if (e.index) {
         outputHighlight(code, [e.index, e.index+1]);
